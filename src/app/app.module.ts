@@ -38,6 +38,10 @@ import {environment} from '../environments/environment.prod';
 // @ts-ignore
 import {AngularFireModule} from '@angular/fire';
 import { UploadAvatarComponent } from './upload/upload-avatar/upload-avatar.component';
+import { ChangeAvatarComponent } from './change/change-avatar/change-avatar.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 export const appRoutes: Routes = [
@@ -56,13 +60,21 @@ export const appRoutes: Routes = [
     component: CreateProductComponent
   },
   {
+    path: 'delete/:id',
+    component: DeleteProductComponent
+  },
+  {
+    path: 'update/:id',
+    component: UpdateProductComponent
+  },
+  {
     path: 'home1',
     component: HomePComponent
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, DetailComponent, ProductListComponent, CreateProductComponent, DeleteProductComponent, UpdateProductComponent, HomePComponent, DialogComponent, UploadAvatarComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, DetailComponent, ProductListComponent, CreateProductComponent, DeleteProductComponent, UpdateProductComponent, HomePComponent, DialogComponent, UploadAvatarComponent, ChangeAvatarComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -70,7 +82,10 @@ export const appRoutes: Routes = [
     MatToolbarModule,
     MatIconModule,
     MatRadioModule,
+    MatInputModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSlideToggleModule,
     MatButtonModule,
     BrowserAnimationsModule,
@@ -78,9 +93,9 @@ export const appRoutes: Routes = [
     NgxAudioPlayerModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    RouterModule.forRoot(appRoutes, {useHash: false}), MatDialogModule, MatFormFieldModule, MatTableModule, MatPaginatorModule, ReactiveFormsModule, FormsModule
+    RouterModule.forRoot(appRoutes, {useHash: false}), MatDialogModule, MatFormFieldModule, MatTableModule, MatPaginatorModule, ReactiveFormsModule, FormsModule, MatDatepickerModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -12,7 +12,7 @@ import {DialogComponent} from '../dialog/dialog.component';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'avatarProduct', 'description', 'price', 'dateOfManufacture'];
+  displayedColumns: string[] = ['id', 'name', 'avatarProduct', 'description', 'price', 'dateOfManufacture', 'delete', 'edit'];
   // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: any;
   products: Product[] = [];
@@ -35,9 +35,9 @@ export class ProductListComponent implements OnInit {
     });
   }
   deleteCategory(id: number) {
-    // this.productService.deleteCategoryById(id).subscribe(() => {
-    //   this.getListProduct();
-    // });
+    this.productService.deleteProductById(id).subscribe(() => {
+      this.getListProduct();
+    });
   }
   openDialog(id: number) {
     const dialogRef = this.dialog.open(DialogComponent);

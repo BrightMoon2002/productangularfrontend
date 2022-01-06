@@ -57,7 +57,7 @@
                                 Price:
                             </mat-label>
                             <div class="col-10">
-                                <input matInput class="form-control" type="url" id="example-input-category" formControlName="price">
+                                <input matInput class="form-control" type="number" id="example-input-category" formControlName="price">
                             </div>
                             <mat-error class="col alert alert-danger" role="alert"
                                  *ngIf="product.get('price')?.hasError('required') && product.get('price')?.touched">
@@ -69,7 +69,11 @@
                                 Date of Manufacture:
                             </mat-label>
                             <div class="col-10">
-                                <input matInput class="form-control" type="url" id="example-input-price" formControlName="dateOfManufacture">
+                                <mat-label>Date Of Manufacture</mat-label>
+                                <input matInput [matDatepicker]="picker" name="dateOfManufacture" formControlName="dateOfManufacture">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+<!--                                <input matInput class="form-control" type="date" id="example-input-price" formControlName="dateOfManufacture">-->
                             </div>
                             <mat-error class="col alert alert-danger" role="alert"
                                  *ngIf="product.get('dateOfManufacture')?.hasError('required') && product.get('dateOfManufacture')?.touched">
