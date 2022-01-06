@@ -32,6 +32,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {environment} from '../environments/environment.prod';
+// @ts-ignore
+import {AngularFireModule} from '@angular/fire';
+import { UploadAvatarComponent } from './upload/upload-avatar/upload-avatar.component';
+
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' } },
@@ -55,7 +62,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, DetailComponent, ProductListComponent, CreateProductComponent, DeleteProductComponent, UpdateProductComponent, HomePComponent, DialogComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, DetailComponent, ProductListComponent, CreateProductComponent, DeleteProductComponent, UpdateProductComponent, HomePComponent, DialogComponent, UploadAvatarComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -69,7 +76,9 @@ export const appRoutes: Routes = [
     BrowserAnimationsModule,
     NavBarModule, FooterModule,
     NgxAudioPlayerModule,
-    RouterModule.forRoot(appRoutes, {useHash: false}), MatDialogModule, MatFormFieldModule, MatTableModule, MatPaginatorModule
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    RouterModule.forRoot(appRoutes, {useHash: false}), MatDialogModule, MatFormFieldModule, MatTableModule, MatPaginatorModule, ReactiveFormsModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

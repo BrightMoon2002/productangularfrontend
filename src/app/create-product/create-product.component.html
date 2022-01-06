@@ -1,1 +1,118 @@
-<p>create-product works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0">
+                <form novalidate (ngSubmit)="createNewProduct()"
+                      class="row justify-content-md-center"
+                      [formGroup]="product">
+                    <div class="col-md-8">
+                        <mat-error class="alert alert-primary">{{status}}</mat-error>
+                        <div class="form-group row">
+<!--                            <mat-label for="example-id-input" class="col-2 col-form-label" >-->
+<!--                                Id:-->
+<!--                            </mat-label>-->
+                            <div class="col-10">
+                                <input hidden matInput class="form-control" type="text"
+                                       id="example-id-input"
+                                       formControlName="id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <mat-label for="example-name-input" class="col-2 col-form-label" >
+                                Name:
+                            </mat-label>
+                            <div class="col-10">
+                                <input matInput class="form-control" type="text"
+                                       id="example-name-input"
+                                       formControlName="name">
+                            </div>
+                            <mat-error class="col alert alert-danger" role="alert"
+                                 *ngIf="product.get('name')?.hasError('required') && product.get('name')?.touched">
+                                Name is required!
+                            </mat-error>
+                            <mat-error class="col alert alert-danger" role="alert"
+                                 *ngIf="product.get('name')?.hasError('minlength') && product.get('name')?.touched">
+                                Name must be more than 3 letters!
+                            </mat-error>
+                        </div>
+                        <div class="form-group row">
+                            <mat-label for="example-author-input" class="col-2 col-form-label">
+                                Description:
+                            </mat-label>
+                            <div class="col-10">
+                                <input matInput class="form-control" type="text"
+                                       id="example-author-input" formControlName="description">
+                            </div>
+                            <mat-error class="col alert alert-danger" role="alert"
+                                 *ngIf="product.get('description')?.hasError('required') && product.get('description')?.touched">
+                                Author is required!
+                            </mat-error>
+                            <mat-error class="col alert alert-danger" role="alert"
+                                 *ngIf="product.get('description')?.hasError('minlength') && product.get('description')?.touched">
+                                Author must be more than 3 letters!
+                            </mat-error>
+                        </div>
+                        <div class="form-group row">
+                            <mat-label for="example-input-category" class="col-2 col-form-label">
+                                Price:
+                            </mat-label>
+                            <div class="col-10">
+                                <input matInput class="form-control" type="url" id="example-input-category" formControlName="price">
+                            </div>
+                            <mat-error class="col alert alert-danger" role="alert"
+                                 *ngIf="product.get('price')?.hasError('required') && product.get('price')?.touched">
+                                Price is required!
+                            </mat-error>
+                        </div>
+                        <div class="form-group row">
+                            <mat-label for="example-input-price" class="col-2 col-form-label">
+                                Date of Manufacture:
+                            </mat-label>
+                            <div class="col-10">
+                                <input matInput class="form-control" type="url" id="example-input-price" formControlName="dateOfManufacture">
+                            </div>
+                            <mat-error class="col alert alert-danger" role="alert"
+                                 *ngIf="product.get('dateOfManufacture')?.hasError('required') && product.get('dateOfManufacture')?.touched">
+                                Date of Manufactured is required!
+                            </mat-error>
+                        </div>
+<!--                        <div class="form-group row">-->
+<!--                            <mat-label for="example-input-price" class="col-2 col-form-label">-->
+<!--                                Avatar Product:-->
+<!--                            </mat-label>-->
+<!--                            <div class="col-10">-->
+<!--                                <input matInput class="form-control" type="url" id="example-input-avatarProduct" formControlName="avatarProduct">-->
+<!--                            </div>-->
+<!--                            <mat-error class="col alert alert-danger" role="alert"-->
+<!--                                 *ngIf="product.get('avatarProduct')?.hasError('required') && product.get('avatarProduct')?.touched">-->
+<!--                                Date of Manufactured is required!-->
+<!--                            </mat-error>-->
+<!--                        </div>-->
+
+                        <app-upload-avatar (giveUrlToCreate)="onUploadAvatar($event)"><input hidden formControlName="avatarProduct"></app-upload-avatar>
+                            <!--                        <mat-icon color="accent" matSuffix>add_circle_outline</mat-icon>-->
+
+                        <!--        button-->
+                        <!--        <div class="form-group row">-->
+                        <!--            <div class="col-10 offset-2">-->
+                        <!--                <button class="btn btn-primary"-->
+                        <!--                        type="submit">Submit</button>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <div style="text-align: center" >
+                            <button class="btn btn-primary" type="submit"
+                                    [disabled]="product.invalid">
+                                Create
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+                <!--<p>Form value: </p>-->
+                <!--<pre> {{  book.value | json }}</pre>-->
+                <!--<pre> {{  book.controls.name?.errors | json }}</pre>-->
+
+            </mat-card>
+        </div>
+    </div>
+</div>
