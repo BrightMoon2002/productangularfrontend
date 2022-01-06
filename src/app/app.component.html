@@ -1,0 +1,11 @@
+
+<h2 style="text-align: center">BookShop HD</h2>
+<title>{{title}}</title>
+<nav style="text-align: center">
+    <a routerLink="/home1" routerLinkActive="selected"
+       [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a [routerLink]="['/create']" routerLinkActive="selected">Create</a>
+    <a routerLink="/list" routerLinkActive="selected">BookList</a>
+</nav>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
